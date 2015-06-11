@@ -11,3 +11,6 @@ buildNumber.properties
 # IDEA
 *.iml
 .idea
+
+# Misc
+*.log
