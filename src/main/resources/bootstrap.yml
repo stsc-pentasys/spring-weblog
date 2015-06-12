@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: weblog
+  profiles:
+    active: development
+  cloud:
+    config:
+     uri: http://localhost:9090
+     username: admin
+     password: adminadmin
+     label: master
