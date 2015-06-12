@@ -21,17 +21,7 @@ public class BlogServiceBean implements BlogService {
 
     private IdNormalizer idNormalizer;
 
-    private NotificationAdapter notificationAdapter = new NotificationAdapter() {
-        @Override
-        public void created(Article newEntry) {
-            // do nothing
-        }
-
-        @Override
-        public void edited(Article existingEntry) {
-            // do nothing
-        }
-    };
+    private NotificationAdapter notificationAdapter;
 
     /**
      * Set mandatory dependencies only.

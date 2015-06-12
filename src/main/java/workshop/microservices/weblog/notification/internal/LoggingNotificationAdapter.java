@@ -3,16 +3,17 @@ package workshop.microservices.weblog.notification.internal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import workshop.microservices.weblog.Development;
 import workshop.microservices.weblog.core.Article;
 import workshop.microservices.weblog.core.NotificationAdapter;
 
 /**
  * Minimal implementation based on SLF4j API.
  */
-@Component
+@Development @Component
 public class LoggingNotificationAdapter implements NotificationAdapter {
 
-    public static final Logger LOG = LoggerFactory.getLogger("workshop.tdd.weblog.BusinessNotification");
+    public static final Logger LOG = LoggerFactory.getLogger("workshop.microservices.weblog.BusinessNotification");
 
     @Override
     public void created(Article newArticle) {
