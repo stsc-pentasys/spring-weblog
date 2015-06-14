@@ -3,6 +3,9 @@ package workshop.microservices.weblog.core;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * A single article.
  */
@@ -65,5 +68,16 @@ public class Article implements Serializable {
      */
     public Date getCreated() {
         return created;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("articleId", articleId)
+                .append("title", title)
+                .append("content", content)
+                .append("publishedBy", publishedBy.getFullName())
+                .append("created", created)
+                .build();
     }
 }

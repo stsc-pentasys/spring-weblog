@@ -1,5 +1,8 @@
 package workshop.microservices.weblog.resource;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * Represents a new or modified entry.
  */
@@ -59,5 +62,14 @@ public class ArticleRequest {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("nickName", nickName)
+                .append("title", title)
+                .append("content", content)
+                .build();
     }
 }

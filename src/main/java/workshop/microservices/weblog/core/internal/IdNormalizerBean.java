@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import workshop.microservices.weblog.core.IdNormalizer;
 
@@ -13,6 +15,8 @@ import workshop.microservices.weblog.core.IdNormalizer;
  */
 @Component
 public class IdNormalizerBean implements IdNormalizer {
+
+    private static final Logger LOG = LoggerFactory.getLogger(IdNormalizerBean.class);
 
     /**
      * Replacements for german mutations.
@@ -49,7 +53,9 @@ public class IdNormalizerBean implements IdNormalizer {
     public String normalizeTitle(String title) {
         String lowerCase = toLowerCase(title);
         String replacedMutations = replaceMutations(lowerCase);
-        return replaceSpecialCharacters(replacedMutations);
+        String result = replaceSpecialCharacters(replacedMutations);
+        LOG.debug("Normalized '{}' to '{}'", title, result);
+        return result;
     }
 
     private String toLowerCase(String title) {

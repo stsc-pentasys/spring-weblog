@@ -11,6 +11,8 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import workshop.microservices.weblog.core.ArticleNotFoundException;
@@ -31,7 +33,8 @@ import workshop.microservices.weblog.core.WrongAuthorException;
 @Component
 public class JaxRsBlogResource implements BlogResource {
 
-    // NOT on setter Method - not supported by Jersey/Spring integration
+    private static final Logger LOG = LoggerFactory.getLogger(JaxRsBlogResource.class);
+
     @Autowired
     private BlogService blogService;
 
@@ -48,6 +51,7 @@ public class JaxRsBlogResource implements BlogResource {
 
     @Override
     public Response getAll() {
+        LOG.debug("All article requested");
         try {
             List<Article> articles = blogService.index();
             List<ArticleListResponse> views = createViewList(articles);
@@ -77,6 +81,7 @@ public class JaxRsBlogResource implements BlogResource {
 
     @Override
     public Response getOne(String entryId) {
+        LOG.debug("Article  {} requested", entryId);
         try {
             Article entry = blogService.read(entryId);
             return Response.ok(createBlogEntryView(entry)).build();
@@ -100,6 +105,7 @@ public class JaxRsBlogResource implements BlogResource {
 
     @Override
     public Response postNew(ArticleRequest request) {
+        LOG.debug("Posting new article", request);
         try {
             ResponseBuilder response = postArticleResponse(request);
             return response.build();
@@ -123,9 +129,9 @@ public class JaxRsBlogResource implements BlogResource {
 
     @Override
     public Response putExisting(String entryId, ArticleRequest request) {
+        LOG.debug("Putting new version of article {}: {}", entryId, request);
         try {
-            ResponseBuilder response = Response.ok(putArticleResponse(entryId, request));
-            return response.build();
+            return Response.ok(putArticleResponse(entryId, request)).build();
         } catch (ArticleNotFoundException e) {
             throw new UnknownArticleIdException(entryId);
         } catch (WrongAuthorException e) {

@@ -2,6 +2,9 @@ package workshop.microservices.weblog.core;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * A registered author.
  */
@@ -39,5 +42,14 @@ public class Author implements Serializable {
      */
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("nickName", nickName)
+                .append("fullName", fullName)
+                .append("emailAddress", emailAddress)
+                .build();
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import workshop.microservices.weblog.core.*;
@@ -14,6 +16,8 @@ import workshop.microservices.weblog.core.*;
  */
 @Service
 public class BlogServiceBean implements BlogService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(BlogServiceBean.class);
 
     private ArticlePersistenceAdapter articlePersistenceAdapter;
 
@@ -38,6 +42,8 @@ public class BlogServiceBean implements BlogService {
         this.articlePersistenceAdapter = articlePersistenceAdapter;
         this.authorPersistenceAdapter = authorPersistenceAdapter;
         this.idNormalizer = idNormalizer;
+
+        LOG.info("{} initialized", getClass().getSimpleName());
     }
 
     /**
@@ -58,7 +64,13 @@ public class BlogServiceBean implements BlogService {
 
     @Override
     public List<Article> index() throws BlogServiceException {
-        return articlePersistenceAdapter.findAll();
+        try {
+            List<Article> articles = articlePersistenceAdapter.findAll();
+            LOG.debug("Found {} articles", articles.size());
+            return articles;
+        } catch (RuntimeException e) {
+            throw new BlogServiceException(e);
+        }
     }
 
     @Override
@@ -66,10 +78,11 @@ public class BlogServiceBean implements BlogService {
         verifyNotEmpty(nickName, title, content);
         Author author = verifyAuthor(nickName);
         String entryId = createUniqueId(title);
-        Article newEntry = new Article(entryId, title, content, author, now());
-        articlePersistenceAdapter.save(newEntry);
-        notificationAdapter.created(newEntry);
-        return newEntry;
+        Article article = new Article(entryId, title, content, author, now());
+        saveNew(article);
+        notificationAdapter.created(article);
+        LOG.debug("New article published: {}", article);
+        return article;
     }
 
     private void verifyNotEmpty(String nickName, String title, String content) throws BlogServiceException {
@@ -92,6 +105,14 @@ public class BlogServiceBean implements BlogService {
         return normalized;
     }
 
+    private void saveNew(Article newEntry) throws BlogServiceException {
+        try {
+            articlePersistenceAdapter.save(newEntry);
+        } catch (RuntimeException e) {
+            throw new BlogServiceException(e);
+        }
+    }
+
     private Date now() {
         return new Date();
     }
@@ -100,25 +121,25 @@ public class BlogServiceBean implements BlogService {
     public Article edit(String articleId, String editor, String title, String content) throws BlogServiceException {
         verifyNotEmpty(editor, title, content);
         Article published = read(articleId);
-        return executeUpdate(published, editor, title, content);
+        Article updated = executeUpdate(published, editor, title, content);
+        LOG.debug("Article updated: {}", updated);
+        return updated;
     }
 
     private Article executeUpdate(Article published, String nickName, String title, String content)
-            throws WrongAuthorException{
+            throws BlogServiceException {
         verifySameAuthor(published, nickName);
         Article updated = new Article(published, title, content);
-        articlePersistenceAdapter.update(updated);
+        updateExisting(updated);
         notificationAdapter.edited(updated);
         return updated;
     }
 
-    @Override
-    public Article read(String articleId) throws BlogServiceException {
-        Article article = articlePersistenceAdapter.findById(articleId);
-        if (article != null) {
-            return article;
-        } else {
-            throw new ArticleNotFoundException("Article not found: " +  articleId);
+    private void updateExisting(Article updated) throws BlogServiceException {
+        try {
+            articlePersistenceAdapter.update(updated);
+        } catch (RuntimeException e) {
+            throw new BlogServiceException(e);
         }
     }
 
@@ -126,6 +147,17 @@ public class BlogServiceBean implements BlogService {
         String originalAuthor = published.getPublishedBy().getNickName();
         if (!originalAuthor.equals(nickName)) {
             throw new WrongAuthorException(nickName + " is not the author of " + published.getArticleId());
+        }
+    }
+
+    @Override
+    public Article read(String articleId) throws BlogServiceException {
+        Article article = articlePersistenceAdapter.findById(articleId);
+        if (article != null) {
+            LOG.debug("Found article: {}", article);
+            return article;
+        } else {
+            throw new ArticleNotFoundException("Article not found: " +  articleId);
         }
     }
 }

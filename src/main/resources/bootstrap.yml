@@ -9,3 +9,5 @@ spring:
      username: admin
      password: adminadmin
      label: master
+logging:
+  path: logs

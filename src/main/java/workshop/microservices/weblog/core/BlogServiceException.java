@@ -5,6 +5,10 @@ package workshop.microservices.weblog.core;
  */
 public class BlogServiceException extends Exception {
 
+    public BlogServiceException(Throwable cause) {
+        super(cause);
+    }
+
     public BlogServiceException(String message) {
         super(message);
     }

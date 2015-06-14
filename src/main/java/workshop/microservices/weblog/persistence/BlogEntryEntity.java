@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * Database representation of an blog article.
  */
@@ -93,4 +96,16 @@ public class BlogEntryEntity implements Serializable {
         this.created = created;
     }
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("objectId", objectId)
+                .append("version", version)
+                .append("entryId", entryId)
+                .append("title", title)
+                .append("content", content)
+                .append("author", author)
+                .append("created", created)
+                .build();
+    }
 }
