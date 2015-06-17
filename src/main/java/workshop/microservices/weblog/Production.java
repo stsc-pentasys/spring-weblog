@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Profile;
 
 /**
- * Created by schulzst on 12.06.2015.
+ * * Marks components available only in 'production' mode, i.e. if the corresponding Spring profile is set.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
