@@ -59,6 +59,11 @@
 			<version>${commons.lang3.version}</version>
 		</dependency>
 
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
 		<!-- Test only -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
