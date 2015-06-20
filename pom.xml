@@ -64,6 +64,11 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+        </dependency>
+
 		<!-- Test only -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
