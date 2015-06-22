@@ -31,4 +31,4 @@ spring:
     hibernate:
       ddl-auto: none
   profiles:
-    active: development # TODO Try 'production' instead
+    active: production
