@@ -38,10 +38,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- TODO Add dependency to spring-cloud-starter-config -->
-
-        <!-- TODO Add dependency to spring-boot-starter-actuator -->
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -53,12 +49,12 @@
             <version>${commons.lang3.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+        <!-- TODO Add dependency to flyway-core -->
 
+        <!-- TODO Add dependency to spring-boot-starter-actuator -->
         <!-- TODO Add dependency to jolokia-core -->
+
+        <!-- TODO Add dependency to spring-cloud-starter-config -->
 
         <!-- Test only -->
         <dependency>
