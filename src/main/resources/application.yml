@@ -1,0 +1,34 @@
+# TODO Move to /test/resources
+endpoints:
+  health:
+    sensitive: false
+  jolokia:
+    enabled: true
+  metrics:
+    sensitive: false
+jolokia:
+  config:
+    debug: true
+logging:
+  level:
+    org:
+      springframework:
+        boot: INFO
+    workshop:
+      microservices:
+        weblog: DEBUG
+management:
+  port: 8081
+server:
+  port: 8080
+service:
+  description: Spring Weblog
+spring:
+  datasource:
+    platform: h2
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  profiles:
+    active: development # TODO Try 'production' instead
