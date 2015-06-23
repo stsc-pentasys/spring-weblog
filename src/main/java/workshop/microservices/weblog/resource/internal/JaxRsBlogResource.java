@@ -82,14 +82,7 @@ public class JaxRsBlogResource implements BlogResource {
     @Override
     public Response getOne(String entryId) {
         LOG.debug("Article  {} requested", entryId);
-        try {
-            Article entry = blogService.read(entryId);
-            return Response.ok(createBlogEntryView(entry)).build();
-        } catch (ArticleNotFoundException e) {
-            throw new UnknownArticleIdException(entryId);
-        } catch (BlogServiceException e) {
-            throw new TechnicalException();
-        }
+        throw new UnsupportedOperationException("Not implemented yet!");
     }
 
     private ArticleResponse createBlogEntryView(Article entry) {

@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.StatusType;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -51,7 +52,8 @@ public class JaxRsBlogResourceTest {
     @Mock
     private UriBuilder uriBuilderMock;
 
-    @Test
+    // TODO Activate test.
+    @Ignore @Test
     public void getOneReturnsOk() throws Exception {
         Article article = ArticleBuilder.defaultArticle().build();
         when(blogServiceMock.read(ARTICLE_ID)).thenReturn(article);
@@ -68,7 +70,8 @@ public class JaxRsBlogResourceTest {
         assertThat("HTTP status code", response.getStatusInfo(), is(status));
     }
 
-    @Test(expected = UnknownArticleIdException.class)
+    // TODO Activate test.
+    @Ignore @Test(expected = UnknownArticleIdException.class)
     public void getOneReturnsNotFound() throws Exception {
         onGetArticleThrow(new ArticleNotFoundException("Not found!"));
         getOne();
