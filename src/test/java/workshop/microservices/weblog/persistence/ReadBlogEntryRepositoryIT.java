@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import workshop.microservices.weblog.IntegrationBase;
@@ -14,13 +15,13 @@ public class ReadBlogEntryRepositoryIT extends IntegrationBase {
     @Autowired
     private BlogEntryRepository underTest;
 
-    @Test
+    @Ignore @Test
     public void getEntryReturnsExisting() throws Exception {
         BlogEntryEntity result = underTest.findByEntryId("is-tdd-dead");
         assertThat("Title", result.getTitle(), is("Is TDD Dead?"));
     }
 
-    @Test
+    @Ignore @Test
     public void getEntryReturnsNullOnMissingEntry() throws Exception {
         BlogEntryEntity result = underTest.findByEntryId("non-existing-id");
         assertThat("Result", result, nullValue());

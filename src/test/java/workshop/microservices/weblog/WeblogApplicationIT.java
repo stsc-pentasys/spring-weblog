@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 import workshop.microservices.weblog.resource.ArticleRequest;
 
+// TODO Activate tests.
+@Ignore
 public class WeblogApplicationIT extends IntegrationBase {
 
     @Value("${local.server.port}")
@@ -22,8 +24,6 @@ public class WeblogApplicationIT extends IntegrationBase {
         basePath = "/articles";
     }
 
-    // TODO Activate test.
-    @Ignore
     @Test
     public void getArticleSuccess() throws Exception {
         given().pathParam("articleId", "is-tdd-dead")
@@ -35,7 +35,6 @@ public class WeblogApplicationIT extends IntegrationBase {
                 .body("title", equalTo("Is TDD Dead?"));
     }
 
-    @Ignore
     @Test
     public void getArticleFailsForUnknownId() throws Exception {
         given().pathParam("articleId", "entry-does-not-exist")
