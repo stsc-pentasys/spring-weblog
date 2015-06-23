@@ -10,7 +10,8 @@ import workshop.microservices.weblog.core.NotificationAdapter;
 /**
  * Minimal implementation based on SLF4j API.
  */
-@Production @Component
+// TODO Add annotation for 'production' mode
+@Component
 public class LoggingNotificationAdapter implements NotificationAdapter {
 
     public static final Logger LOG = LoggerFactory.getLogger("workshop.microservices.notification");
