@@ -2,12 +2,10 @@ package workshop.microservices.weblog.resource.internal;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
@@ -15,17 +13,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import workshop.microservices.weblog.core.ArticleNotFoundException;
-import workshop.microservices.weblog.resource.ArticleListResponse;
-import workshop.microservices.weblog.resource.ArticleRequest;
-import workshop.microservices.weblog.resource.ArticleResponse;
-import workshop.microservices.weblog.resource.BlogResource;
 import workshop.microservices.weblog.core.Article;
 import workshop.microservices.weblog.core.ArticleAlreadyExistsException;
+import workshop.microservices.weblog.core.ArticleNotFoundException;
 import workshop.microservices.weblog.core.BlogService;
 import workshop.microservices.weblog.core.BlogServiceException;
 import workshop.microservices.weblog.core.UnknownAuthorException;
 import workshop.microservices.weblog.core.WrongAuthorException;
+import workshop.microservices.weblog.resource.ArticleListResponse;
+import workshop.microservices.weblog.resource.ArticleRequest;
+import workshop.microservices.weblog.resource.ArticleResponse;
+import workshop.microservices.weblog.resource.BlogResource;
 
 /**
  * REST API implementation.

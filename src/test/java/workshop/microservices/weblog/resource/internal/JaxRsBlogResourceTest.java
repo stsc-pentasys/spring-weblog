@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.StatusType;
@@ -23,17 +22,17 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import workshop.microservices.weblog.core.Article;
+import workshop.microservices.weblog.core.ArticleAlreadyExistsException;
+import workshop.microservices.weblog.core.ArticleBuilder;
 import workshop.microservices.weblog.core.ArticleNotFoundException;
+import workshop.microservices.weblog.core.BlogService;
+import workshop.microservices.weblog.core.BlogServiceException;
+import workshop.microservices.weblog.core.UnknownAuthorException;
 import workshop.microservices.weblog.resource.ArticleListResponse;
 import workshop.microservices.weblog.resource.ArticleRequest;
 import workshop.microservices.weblog.resource.ArticleResponse;
 import workshop.microservices.weblog.resource.BlogResource;
-import workshop.microservices.weblog.core.Article;
-import workshop.microservices.weblog.core.ArticleAlreadyExistsException;
-import workshop.microservices.weblog.core.ArticleBuilder;
-import workshop.microservices.weblog.core.BlogService;
-import workshop.microservices.weblog.core.BlogServiceException;
-import workshop.microservices.weblog.core.UnknownAuthorException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JaxRsBlogResourceTest {

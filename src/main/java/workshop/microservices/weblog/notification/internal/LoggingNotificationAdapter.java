@@ -3,7 +3,6 @@ package workshop.microservices.weblog.notification.internal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import workshop.microservices.weblog.Production;
 import workshop.microservices.weblog.core.Article;
 import workshop.microservices.weblog.core.NotificationAdapter;
 

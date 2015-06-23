@@ -1,7 +1,6 @@
 package workshop.microservices.weblog.core;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Persistence operations regarding Article as required by the 'business logic'.
