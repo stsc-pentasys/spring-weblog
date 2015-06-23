@@ -2,7 +2,7 @@ spring:
   application:
     name: weblog
   profiles:
-    active: development
+    active: production
   cloud:
     config:
      uri: http://localhost:9090
