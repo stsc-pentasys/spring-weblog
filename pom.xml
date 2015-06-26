@@ -21,7 +21,7 @@
         <java.version>1.8</java.version>
         <restassured.version>2.4.0</restassured.version>
         <commons.lang3.version>3.3.2</commons.lang3.version>
-        <spring.config.version>1.0.2.BUILD-SNAPSHOT</spring.config.version>
+        <spring.config.version>1.0.2.RELEASE</spring.config.version>
     </properties>
 
     <dependencies>
@@ -103,17 +103,4 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>springSnapshots</id>
-            <name>Spring Snapshots</name>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>daily</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-            <url>https://repo.spring.io/snapshot</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 </project>
