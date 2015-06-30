@@ -1,3 +1,4 @@
+-- TODO 7 Move to db/migrations V1__schema.sql
 CREATE TABLE WL_USER (
   OBJECT_ID     BIGINT PRIMARY KEY AUTO_INCREMENT,
   VERSION       BIGINT              NOT NULL DEFAULT 1,

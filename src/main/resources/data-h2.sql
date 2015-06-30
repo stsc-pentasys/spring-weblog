@@ -1,3 +1,4 @@
+-- TODO 8 Move to db/migrations/V2__data.sql
 INSERT INTO WL_USER (USER_ID, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS) VALUES
   ('martin', 'Martin', 'Fauler', 'martin_f@gmx.de'),
   ('kent', 'Kent', 'Baeck', 'kent.baeck@gmail.com'),

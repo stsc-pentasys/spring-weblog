@@ -31,7 +31,8 @@ public interface BlogEntryRepository extends CrudRepository<BlogEntryEntity, Lon
      *
      * @return the entries as list or an empty list, if no entry exists.
      */
-    @Query("select be from BlogEntryEntity be order by be.created desc")
+    // TODO 4 Modify statement
+    @Query("select be from BlogEntryEntity be order by be.entryId")
     List<BlogEntryEntity> findAllByCustomQuery();
 
 }

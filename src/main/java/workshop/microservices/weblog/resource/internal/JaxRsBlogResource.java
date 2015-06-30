@@ -80,7 +80,7 @@ public class JaxRsBlogResource implements BlogResource {
     @Override
     public Response getOne(String entryId) {
         LOG.debug("Article  {} requested", entryId);
-        // TODO Implement me!
+        // TODO 2 Implement me!
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 

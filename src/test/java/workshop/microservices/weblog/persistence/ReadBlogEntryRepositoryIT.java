@@ -15,19 +15,20 @@ public class ReadBlogEntryRepositoryIT extends IntegrationBase {
     @Autowired
     private BlogEntryRepository underTest;
 
-    @Ignore @Test
+    @Test
     public void getEntryReturnsExisting() throws Exception {
         BlogEntryEntity result = underTest.findByEntryId("is-tdd-dead");
         assertThat("Title", result.getTitle(), is("Is TDD Dead?"));
     }
 
-    @Ignore @Test
+    @Test
     public void getEntryReturnsNullOnMissingEntry() throws Exception {
         BlogEntryEntity result = underTest.findByEntryId("non-existing-id");
         assertThat("Result", result, nullValue());
     }
 
-    @Test
+    // TODO 3 Activate test
+    @Ignore @Test
     public void findAllByCustomQueryReturnsEntriesInProperOrder() throws Exception {
         List<BlogEntryEntity> result = underTest.findAllByCustomQuery();
         int size = result.size();

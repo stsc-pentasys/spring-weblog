@@ -29,6 +29,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- TODO 5 Replace default Tomcat with Jetty -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
@@ -49,12 +52,13 @@
             <version>${commons.lang3.version}</version>
         </dependency>
 
-        <!-- TODO Add dependency to flyway-core -->
+        <!-- TODO 6 Add dependency to flyway-core -->
 
-        <!-- TODO Add dependency to spring-boot-starter-actuator -->
-        <!-- TODO Add dependency to jolokia-core -->
+        <!-- TODO 9 Add dependency to spring-cloud-starter-config -->
 
-        <!-- TODO Add dependency to spring-cloud-starter-config -->
+        <!-- TODO 10 Add dependency to spring-boot-starter-actuator -->
+
+        <!-- TODO 11 Add dependency to jolokia-core -->
 
         <!-- Test only -->
         <dependency>

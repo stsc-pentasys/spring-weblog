@@ -51,7 +51,7 @@ public class JaxRsBlogResourceTest {
     @Mock
     private UriBuilder uriBuilderMock;
 
-    // TODO Activate test.
+    // TODO 1 Activate test.
     @Ignore @Test
     public void getOneReturnsOk() throws Exception {
         Article article = ArticleBuilder.defaultArticle().build();
